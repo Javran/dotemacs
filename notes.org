@@ -1,5 +1,11 @@
 * Functionalities that I don't know:
-* Commands for quick reference
+** load minor
+   general way of enabling a minor mode according
+   to the major-mode?
+** split config
+   into multiple files
+
+* Quick reference
 ** global
    C-x b <RET> <any buffer name> can also be used to create a new buffer
 ** magit
