@@ -1,0 +1,3 @@
+* Functionalities that I don't know:
+* Commands for quick reference
+** C-x b <RET> <any buffer name> can also be used to create a new buffer
