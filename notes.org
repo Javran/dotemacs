@@ -1,3 +1,13 @@
 * Functionalities that I don't know:
 * Commands for quick reference
 ** C-x b <RET> <any buffer name> can also be used to create a new buffer
+** magit
+    s for stage/add file
+    g refresh magit
+    u for unstage
+    i add file to .gitignore
+    j s jump to staged
+    j u jump to unstaged
+    j n jump to untracked
+    c enter and edit commit log
+    C-c c-c commit (log edit)
