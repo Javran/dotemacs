@@ -68,11 +68,29 @@
 
 (global-auto-complete-mode t)
 
+(defun newline-before-current-line ()
+  "start a new line before the current line
+   and move cursor there"
+  (interactive) 
+  (beginning-of-line)
+  (newline)
+  (previous-line))
+
+(defun goto-match-paren (arg)
+  "Go to the matching parenthesis if on parenthesis, otherwise insert %.
+vi style of % jumping to matching brace."
+  (interactive "p")
+  (cond ((looking-at "\\s\(") (forward-list 1) (backward-char 1))
+        ((looking-at "\\s\)") (forward-char 1) (backward-list 1))
+        (t (self-insert-command (or arg 1)))))
+
 (global-set-key (kbd "<f2> l") 'org-store-link)
 (global-set-key (kbd "<f2> a") 'org-agenda)
 (global-set-key (kbd "<f2> b") 'org-iswitchb)
 (global-set-key (kbd "<f9> s") 'magit-status)
 (global-set-key (kbd "<f9> l") 'magit-log)
+(global-set-key (kbd "C-,") 'newline-before-current-line)
+(global-set-key (kbd "C-5") 'goto-match-paren)
 
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
@@ -103,3 +121,8 @@
 	  (lambda ()
 	    (local-set-key (kbd "<f7>")
 			   'run-on-current-buffer)))
+
+(setq-default indent-tabs-mode nil)
+(add-hook 'haskell-mode-hook
+	  'haskell-indentation-mode)
+
