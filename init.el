@@ -1,4 +1,5 @@
 (package-initialize)
+(load-library "xscheme")
 (require 'hlinum)
 (hlinum-activate)
 
@@ -63,6 +64,10 @@
 (keyfreq-mode 1)
 (keyfreq-autosave-mode 1)
 
+(ido-mode 1)
+
+(global-auto-complete-mode t)
+
 (global-set-key (kbd "<f2> l") 'org-store-link)
 (global-set-key (kbd "<f2> a") 'org-agenda)
 (global-set-key (kbd "<f2> b") 'org-iswitchb)
@@ -71,3 +76,28 @@
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 ;; This is your old M-x.
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+
+(defun local-set-minor-mode-key (mode key def)
+  "Overrides a minor mode keybinding for the local
+   buffer, by creating or altering keymaps stored in buffer-local
+   `minor-mode-overriding-map-alist'."
+  (let* ((oldmap (cdr (assoc mode minor-mode-map-alist)))
+         (newmap (or (cdr (assoc mode minor-mode-overriding-map-alist))
+                     (let ((map (make-sparse-keymap)))
+                       (set-keymap-parent map oldmap)
+                       (push `(,mode . ,map) minor-mode-overriding-map-alist) 
+                       map))))
+    (define-key newmap key def)))
+
+(defun run-on-current-buffer ()
+  "run mit-scheme on current buffer"
+  (interactive)
+  (shell-command
+   (format "mit-scheme --load %s"
+	   (shell-quote-argument (buffer-file-name))))
+  (revert-buffer t t t))
+
+(add-hook 'scheme-mode-hook
+	  (lambda ()
+	    (local-set-key (kbd "<f7>")
+			   'run-on-current-buffer)))
