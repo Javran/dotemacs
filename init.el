@@ -31,7 +31,6 @@
 (autoload 'ghc-init "ghc" nil t)
 (add-hook 'haskell-mode-hook (lambda () (ghc-init) (flymake-mode)))
 
-
 ;; global settings
 (show-paren-mode 1)
 
@@ -46,33 +45,14 @@
 
 (global-auto-complete-mode t)
 
-(defun newline-before-current-line ()
-  "start a new line before the current line
-   and move cursor there"
-  (interactive)
-  (beginning-of-line)
-  (newline)
-  (previous-line))
-
-(defun goto-match-paren (arg)
-  "Go to the matching parenthesis if on parenthesis, otherwise insert %.
-vi style of % jumping to matching brace."
-  (interactive "p")
-  (cond ((looking-at "\\s\(") (forward-list 1) (backward-char 1))
-        ((looking-at "\\s\)") (forward-char 1) (backward-list 1))
-        (t (self-insert-command (or arg 1)))))
-
+;; my-elfs :: my elisp files
 (setq jav-load-path
       (concat (expand-file-name "~/.emacs.d/")
               "my-elfs/"))
 
 (add-to-list 'load-path jav-load-path)
-(require 'jav-keys)
 
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
-;; This is your old M-x.
-(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+(require 'jav-keys)
 
 (defun local-set-minor-mode-key (mode key def)
   "Overrides a minor mode keybinding for the local
