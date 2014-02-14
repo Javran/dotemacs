@@ -53,6 +53,7 @@
 (add-to-list 'load-path jav-load-path)
 
 (require 'jav-keys)
+(require 'jav-procs)
 
 (defun local-set-minor-mode-key (mode key def)
   "Overrides a minor mode keybinding for the local
@@ -66,27 +67,10 @@
                        map))))
     (define-key newmap key def)))
 
-(defun run-on-current-buffer ()
-  "run mit-scheme with specified file
-   if file local variable `proc-entry` is valid,
-   it will be used, the current file will be used
-   otherwise. `proc-entry` must be a string
-   that does not contain any whitespace"
-  (interactive)
-  (let ((p-entry (cdr (assoc 'proc-entry file-local-variables-alist))))
-    (let ((file-to-run (if (and (stringp p-entry)
-                                (not (string= p-entry "")))
-                           p-entry
-                         (buffer-file-name))))
-      (shell-command
-       (format "mit-scheme --load %s"
-               (shell-quote-argument file-to-run)))
-      (revert-buffer t t t))))
-
 (add-hook 'scheme-mode-hook
 	  (lambda ()
 	    (local-set-key (kbd "<f7>")
-			   'run-on-current-buffer)))
+			   'run-mit-scheme-with-related-file)))
 
 (setq-default indent-tabs-mode nil)
 (add-hook 'haskell-mode-hook
@@ -102,6 +86,4 @@
 (setq-default show-trailing-whitespace t)
 
 (put 'proc-entry 'safe-local-variable
-     (lambda (entry-file)
-       (and (stringp entry-file)
-            (string-match "^[^[:space:]]*$" entry-file))))
+     'safe-mit-scheme-entry-filenamep)
