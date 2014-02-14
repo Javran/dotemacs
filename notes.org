@@ -7,17 +7,23 @@
 
 * Quick reference
 ** global
-   C-x b <RET> <any buffer name> can also be used to create a new buffer
+   * C-x b <RET> <any buffer name> can also be used to create a new buffer
+   * C-, insert new line before current line, then goto the new line
+   * M-^ merge with previous line(+ indentation)
+   * M-: eval-expression
 ** magit
-   s for stage/add file
-   g refresh magit
-   u for unstage
-   i add file to .gitignore
-   j s jump to staged
-   j u jump to unstaged
-   j n jump to untracked
-   c enter and edit commit log
-   C-c c-c commit (log edit)
+   * s for stage/add file
+   * g refresh magit
+   * u for ugenstage
+   * i add file to .gitignore
+   * j s jump to staged
+   * j u jump to unstaged
+   * j n jump to untracked
+   * c enter and edit commit log
+   * C-c c-c commit (log edit)
 ** smex
-   C-s next match
-   C-r prev match
+   * C-s next match
+   * C-r prev match
+** org-mode
+   * S-tab change level
+   * M-RET new item(same list)
