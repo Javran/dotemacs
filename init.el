@@ -67,12 +67,21 @@
     (define-key newmap key def)))
 
 (defun run-on-current-buffer ()
-  "run mit-scheme on current buffer"
+  "run mit-scheme with specified file
+   if file local variable `proc-entry` is valid,
+   it will be used, the current file will be used
+   otherwise. `proc-entry` must be a string
+   that does not contain any whitespace"
   (interactive)
-  (shell-command
-   (format "mit-scheme --load %s"
-	   (shell-quote-argument (buffer-file-name))))
-  (revert-buffer t t t))
+  (let ((p-entry (cdr (assoc 'proc-entry file-local-variables-alist))))
+    (let ((file-to-run (if (and (stringp p-entry)
+                                (not (string= p-entry "")))
+                           p-entry
+                         (buffer-file-name))))
+      (shell-command
+       (format "mit-scheme --load %s"
+               (shell-quote-argument file-to-run)))
+      (revert-buffer t t t))))
 
 (add-hook 'scheme-mode-hook
 	  (lambda ()
@@ -91,3 +100,8 @@
 
 (setq ac-ignore-case nil)
 (setq-default show-trailing-whitespace t)
+
+(put 'proc-entry 'safe-local-variable
+     (lambda (entry-file)
+       (and (stringp entry-file)
+            (string-match "^[^[:space:]]*$" entry-file))))
