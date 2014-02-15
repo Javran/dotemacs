@@ -12,22 +12,25 @@
 (defun shell-command-and-go-to-bottom (cmdline)
   "run shell command, and move to the bottom of the result"
   (interactive "M")
-  (shell-command cmdline)
-  (let ((w (get-buffer-window "*Shell Command Output*")))
-    (with-selected-window w
-      (end-of-buffer))))
+  (let ((ret-val
+         (shell-command cmdline "*Shell Command Output*")))
+    (let ((w (get-buffer-window "*Shell Command Output*")))
+      (with-selected-window w
+        (end-of-buffer))
+      (message "exitcode: %d (%s)" ret-val (current-time-string) ))))
 
 ;; TODO: refactor this command with the prev one?
 (defun shell-command-compile-and-go-to-bottom (cmdline)
   "run shell command, and move to the bottom of the result
    the result will be shown in compliation-mode"
   (interactive "M")
-  (shell-command cmdline)
-  (let ((w (get-buffer-window "*Shell Command Output*")))
-    (with-selected-window w
-      (compilation-mode)
-      (end-of-buffer))))
-
+  (let ((ret-val
+         (shell-command cmdline "*Shell Command Output*")))
+    (let ((w (get-buffer-window "*Shell Command Output*")))
+      (with-selected-window w
+        (compilation-mode)
+        (end-of-buffer))
+      (message "exitcode: %d (%s)" ret-val (current-time-string)))))
 
 (defun goto-match-paren (arg)
   "Go to the matching parenthesis if on parenthesis, otherwise insert %.
