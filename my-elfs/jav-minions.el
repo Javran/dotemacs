@@ -7,6 +7,7 @@
 (require 'cl)
 (require 'hlinum)
 (require 'keyfreq)
+(require 'quack)
 
 ;; highlight current line
 (hlinum-activate)

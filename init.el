@@ -14,7 +14,7 @@
  '(haskell-indent-spaces 4)
  '(menu-bar-mode nil)
  '(package-archives (quote (("melpa" . "http://melpa.milkbox.net/packages/") ("gnu" . "http://elpa.gnu.org/packages/"))))
- '(quack-programs (quote ("mitscheme" "racket" "bigloo" "csi" "csi -hygienic" "gosh" "gsi" "gsi ~~/syntax-case.scm -" "guile" "kawa" "mit-scheme" "mred -z" "mzscheme" "mzscheme -il r6rs" "mzscheme -il typed-scheme" "mzscheme -M errortrace" "mzscheme3m" "mzschemecgc" "rs" "scheme" "scheme48" "scsh" "sisc" "stklos" "sxi")))
+ '(quack-programs (quote ("racket" "guile" "mit-scheme" "scheme")))
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil))
 (custom-set-faces
