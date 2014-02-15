@@ -1,10 +1,15 @@
-* Functionalities that I don't know:
+* Things that can be improved
 ** load minor
    general way of enabling a minor mode according
    to the major-mode?
-** split config
-   into multiple files
-
+** paredit
+   play with it
+** highlight sexp?
+** haskell misc
+   * indentation?
+   * flymake show error msg?
+   * hlint support?
+** emacs sever - client?
 * Quick reference
 ** global
    * C-x b <RET> <any buffer name> can also be used to create a new buffer
