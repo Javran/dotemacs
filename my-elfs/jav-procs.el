@@ -8,6 +8,27 @@
   (newline)
   (previous-line))
 
+;; thanks to nounch for this command
+(defun shell-command-and-go-to-bottom (cmdline)
+  "run shell command, and move to the bottom of the result"
+  (interactive "M")
+  (shell-command cmdline)
+  (let ((w (get-buffer-window "*Shell Command Output*")))
+    (with-selected-window w
+      (end-of-buffer))))
+
+;; TODO: refactor this command with the prev one?
+(defun shell-command-compile-and-go-to-bottom (cmdline)
+  "run shell command, and move to the bottom of the result
+   the result will be shown in compliation-mode"
+  (interactive "M")
+  (shell-command cmdline)
+  (let ((w (get-buffer-window "*Shell Command Output*")))
+    (with-selected-window w
+      (compilation-mode)
+      (end-of-buffer))))
+
+
 (defun goto-match-paren (arg)
   "Go to the matching parenthesis if on parenthesis, otherwise insert %.
 vi style of % jumping to matching brace."
@@ -34,10 +55,31 @@ vi style of % jumping to matching brace."
                                 (not (string= p-entry "")))
                            p-entry
                          (buffer-file-name))))
-      (shell-command
+      (shell-command-compile-and-go-to-bottom
        (format "mit-scheme --load %s"
                (shell-quote-argument file-to-run)))
-      (revert-buffer t t t))))
+                                        ; TODO: what is this??
+                                        ;(revert-buffer t t t)
+      )))
+
+;; TODO: refactor and merge with run-mit-scheme-with-related-file
+(defun run-racket-with-related-file ()
+  "run racket with specified file
+   if file local variable `proc-entry` is valid,
+   it will be used, the current file will be used
+   otherwise. `proc-entry` must be a string
+   that does not contain any whitespace"
+  (interactive)
+  (let ((p-entry (cdr (assoc 'proc-entry file-local-variables-alist))))
+    (let ((file-to-run (if (and (stringp p-entry)
+                                (not (string= p-entry "")))
+                           p-entry
+                         (buffer-file-name))))
+      (shell-command-compile-and-go-to-bottom
+       (format "racket %s"
+               (shell-quote-argument file-to-run)))
+                                        ;(revert-buffer t t t)
+      )))
 
 ;; this function is current not used anywhere
 (defun local-set-minor-mode-key (mode key def)
