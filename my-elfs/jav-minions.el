@@ -32,7 +32,7 @@
 
 (setq-default indent-tabs-mode nil)
 (add-hook 'haskell-mode-hook
-	  'haskell-indentation-mode)
+	  'turn-on-haskell-indent)
 
 (setq make-backup-files nil)
 
