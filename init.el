@@ -34,3 +34,4 @@
 (require 'jav-keys)
 (require 'jav-procs)
 (require 'jav-minions)
+(require 'jav-scheme)

@@ -25,14 +25,9 @@
 
 ;; enable ido-mode
 (ido-mode 1)
-
+(setq ido-enable-flex-matching t)
 
 (global-auto-complete-mode t)
-
-(add-hook 'scheme-mode-hook
-	  (lambda ()
-	    (local-set-key (kbd "<f7>")
-			   'run-mit-scheme-with-related-file)))
 
 (setq-default indent-tabs-mode nil)
 (add-hook 'haskell-mode-hook
