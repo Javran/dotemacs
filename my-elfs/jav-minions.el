@@ -8,7 +8,10 @@
 (require 'hlinum)
 (require 'keyfreq)
 (require 'quack)
+(require 'yasnippet)
 
+
+(yas-global-mode 1)
 ;; highlight current line
 (hlinum-activate)
 
