@@ -9,7 +9,7 @@
    * indentation?
    * flymake show error msg?
    * hlint support?
-** emacs sever - client?
+** completion-ignored-extensions
 * Quick reference
 ** global
    * C-x b <RET> <any buffer name> can also be used to create a new buffer
