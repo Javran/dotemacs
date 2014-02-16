@@ -12,6 +12,7 @@
  '(custom-safe-themes (quote ("e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(global-linum-mode t)
  '(haskell-indent-spaces 4)
+ '(hl-sexp-background-color "RoyalBlue4")
  '(menu-bar-mode nil)
  '(package-archives (quote (("melpa" . "http://melpa.milkbox.net/packages/") ("gnu" . "http://elpa.gnu.org/packages/"))))
  '(quack-fontify-style nil)
