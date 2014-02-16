@@ -14,6 +14,7 @@
  '(haskell-indent-spaces 4)
  '(menu-bar-mode nil)
  '(package-archives (quote (("melpa" . "http://melpa.milkbox.net/packages/") ("gnu" . "http://elpa.gnu.org/packages/"))))
+ '(quack-fontify-style nil)
  '(quack-programs (quote ("racket" "guile" "mit-scheme" "scheme")))
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil))
@@ -23,6 +24,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "DejaVu Sans Mono")))))
+
+(add-to-list
+ 'load-path
+ (concat (expand-file-name "~/.emacs.d/")
+         "extensions/"))
 
 ;; my-elfs :: my elisp files
 (setq jav-load-path

@@ -27,4 +27,10 @@
              (kbd "<f7>")
              'run-scheme-according-to-its-type)))
 
+;; highlight current sexp
+(require 'highlight-sexp)
+(add-hook 'scheme-mode-hook 'highlight-sexp-mode)
+(add-hook 'lisp-mode-hook 'highlight-sexp-mode)
+(add-hook 'emacs-lisp-mode-hook 'highlight-sexp-mode)
+
 (provide 'jav-scheme)
