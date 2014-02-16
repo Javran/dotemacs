@@ -3,8 +3,10 @@
 ;; go away, I need ido-mode
 (setq quack-remap-find-file-bindings-p nil)
 
+(require 'jav-procs)
+
 (defun racket-file-p (filename)
-  "test if `filename` is a racket file
+  "test if `filename` is a racket filehc
    (by looking at its file extension)"
   (and (stringp filename)
        (string= "rkt" (file-name-extension filename))))
@@ -32,5 +34,10 @@
 (add-hook 'scheme-mode-hook 'highlight-sexp-mode)
 (add-hook 'lisp-mode-hook 'highlight-sexp-mode)
 (add-hook 'emacs-lisp-mode-hook 'highlight-sexp-mode)
+
+
+
+(put 'proc-entry 'safe-local-variable
+     'safe-mit-scheme-entry-filenamep)
 
 (provide 'jav-scheme)

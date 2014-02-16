@@ -43,3 +43,4 @@
 (require 'jav-procs)
 (require 'jav-minions)
 (require 'jav-scheme)
+(require 'jav-haskell)

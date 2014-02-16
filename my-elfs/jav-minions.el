@@ -20,11 +20,6 @@
 ;; highlight current line
 (hlinum-activate)
 
-;; required by ghc mode
-;;   using flymake
-(autoload 'ghc-init "ghc" nil t)
-(add-hook 'haskell-mode-hook (lambda () (ghc-init) (flymake-mode)))
-
 ;; always show the balancing parenthesis
 (show-paren-mode 1)
 
@@ -38,9 +33,9 @@
 
 (global-auto-complete-mode t)
 
+;; Prevent Extraneous Tabs
+;; http://www.gnu.org/software/emacs/manual/html_node/eintr/Indent-Tabs-Mode.html
 (setq-default indent-tabs-mode nil)
-(add-hook 'haskell-mode-hook
-	  'turn-on-haskell-indent)
 
 (setq make-backup-files nil)
 
@@ -50,8 +45,5 @@
 
 (setq ac-ignore-case nil)
 (setq-default show-trailing-whitespace t)
-
-(put 'proc-entry 'safe-local-variable
-     'safe-mit-scheme-entry-filenamep)
 
 (provide 'jav-minions)
