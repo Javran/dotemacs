@@ -18,6 +18,8 @@
    * C-, insert new line before current line, then goto the new line
    * M-^ merge with previous line(+ indentation)
    * M-: eval-expression
+   * local variable should be placed near the end of a file
+   * evaluate `hack-local-variables` to reload changes in `Local Variables` part
 ** magit
    * s for stage/add file
    * g refresh magit
