@@ -10,6 +10,13 @@
 (require 'quack)
 (require 'yasnippet)
 
+(setq
+ browse-url-browser-function
+ 'browse-url-generic
+ browse-url-generic-program
+ "/usr/bin/firefox-bin")
+
+
 (autoload 'markdown-mode "markdown-mode"
    "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
