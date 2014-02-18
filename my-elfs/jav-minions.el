@@ -50,6 +50,11 @@
           (lambda ()
             (setq TeX-engine 'xetex)))
 
+(add-hook 'compilation-mode-hook
+          (lambda ()
+            ;; just need to modify the buffer variable here
+            (setq show-trailing-whitespace nil)))
+
 (setq ac-ignore-case nil)
 (setq-default show-trailing-whitespace t)
 

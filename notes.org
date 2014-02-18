@@ -10,7 +10,6 @@
    * flymake show error msg?
    * hlint support?
 ** completion-ignored-extensions
-** compilation mode don't need to show trailing spaces
 ** column editing?
 * Quick reference
 ** global
