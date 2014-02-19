@@ -16,7 +16,6 @@
  browse-url-generic-program
  "/usr/bin/firefox-bin")
 
-
 (autoload 'markdown-mode "markdown-mode"
    "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
@@ -46,10 +45,6 @@
 
 (setq make-backup-files nil)
 
-(add-hook 'LaTeX-mode-hook
-          (lambda ()
-            (setq TeX-engine 'xetex)))
-
 (add-hook 'compilation-mode-hook
           (lambda ()
             ;; just need to modify the buffer variable here
@@ -57,5 +52,9 @@
 
 (setq ac-ignore-case nil)
 (setq-default show-trailing-whitespace t)
+
+(add-hook 'TeX-mode-hook
+          (lambda ()
+            (auto-complete-mode t)))
 
 (provide 'jav-minions)
