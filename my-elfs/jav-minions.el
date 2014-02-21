@@ -10,12 +10,25 @@
 (require 'quack)
 (require 'yasnippet)
 
-(setq
- browse-url-browser-function
- 'browse-url-generic
- browse-url-generic-program
- "/usr/bin/firefox-bin")
 
+;; (add-to-list 'ac-modes 'markdown-mode)
+
+;; emacs settings
+(setq
+ TeX-PDF-mode t
+ ac-auto-show-menu t
+ global-linum-mode t
+ haskell-indent-spaces 4
+ hl-sexp-background-color "RoyalBlue4" 
+ )
+
+;; external browser
+(setq
+ browse-url-browser-function 'browse-url-generic
+ browse-url-generic-program "/usr/bin/firefox-bin"
+ )
+
+;; markdown settings
 (autoload 'markdown-mode "markdown-mode"
    "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
