@@ -36,4 +36,8 @@
 (global-set-key (kbd "<C-S-left>")   'buf-move-left)
 (global-set-key (kbd "<C-S-right>")  'buf-move-right)
 
+;; move to next/prev buffer
+(global-set-key (kbd "<C-tab>") 'next-buffer)
+(global-set-key (kbd "C-`") 'previous-buffer)
+
 (provide 'jav-keys)
