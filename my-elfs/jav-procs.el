@@ -4,9 +4,19 @@
   "start a new line before the current line
    and move cursor there"
   (interactive)
-  (beginning-of-line)
-  (newline)
-  (previous-line))
+  (let ((n (line-number-at-pos)))
+    (if (= n 1)
+        ;; for the first line:
+        ;; move to begin, nl, prev-line
+        (progn
+          (beginning-of-line)
+          (newline)
+          (previous-line))
+      ;; else, we already have a previous line
+      (progn
+        (previous-line)
+        (end-of-line)
+        (newline-and-indent)))))
 
 ;; thanks to nounch for this command
 (defun shell-command-and-go-to-bottom (cmdline)

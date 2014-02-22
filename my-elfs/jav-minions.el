@@ -10,22 +10,19 @@
 (require 'quack)
 (require 'yasnippet)
 
-
-;; (add-to-list 'ac-modes 'markdown-mode)
-
 ;; emacs settings
-
-
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (blink-cursor-mode 0)
+(global-linum-mode t)
 
+;; highlight text between parentheses, might conflict with hl-sexp..
+;; (setq show-paren-style 'expression)
 
 (setq
  TeX-PDF-mode t
  ac-auto-show-menu t
- global-linum-mode t
  haskell-indent-spaces 4
  hl-sexp-background-color "RoyalBlue4"
  )
@@ -60,6 +57,7 @@
 
 (global-auto-complete-mode t)
 
+(add-to-list 'ac-modes 'markdown-mode)
 ;; Prevent Extraneous Tabs
 ;; http://www.gnu.org/software/emacs/manual/html_node/eintr/Indent-Tabs-Mode.html
 (setq-default indent-tabs-mode nil)
@@ -68,7 +66,8 @@
 
 (add-hook 'compilation-mode-hook
           (lambda ()
-            ;; just need to modify the buffer variable here
+            ;; this mode just colorizes some output,
+            ;; no need to visualize any whitespaces.
             (setq show-trailing-whitespace nil)))
 
 (setq ac-ignore-case nil)
@@ -77,5 +76,13 @@
 (add-hook 'TeX-mode-hook
           (lambda ()
             (auto-complete-mode t)))
+
+(add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+            (progn
+              (local-set-key
+               (kbd "<f7>") 'eval-buffer)
+              (local-set-key
+               (kbd "<return>") (key-binding (kbd "C-j"))))))
 
 (provide 'jav-minions)

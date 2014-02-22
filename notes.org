@@ -20,6 +20,7 @@
    * M-: eval-expression
    * local variable should be placed near the end of a file
    * evaluate `hack-local-variables` to reload changes in `Local Variables` part
+   * Emacs: how to define keys: http://ergoemacs.org/emacs/keyboard_shortcuts.html
 ** magit
    * s for stage/add file
    * g refresh magit
