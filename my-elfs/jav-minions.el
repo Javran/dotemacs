@@ -14,12 +14,20 @@
 ;; (add-to-list 'ac-modes 'markdown-mode)
 
 ;; emacs settings
+
+
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+(blink-cursor-mode 0)
+
+
 (setq
  TeX-PDF-mode t
  ac-auto-show-menu t
  global-linum-mode t
  haskell-indent-spaces 4
- hl-sexp-background-color "RoyalBlue4" 
+ hl-sexp-background-color "RoyalBlue4"
  )
 
 ;; external browser

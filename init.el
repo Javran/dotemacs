@@ -1,17 +1,15 @@
 (package-initialize)
 (load-library "xscheme")
 
-(add-to-list
- 'load-path
- (concat (expand-file-name "~/.emacs.d/")
-         "extensions/"))
-
-;; my-elfs :: my elisp files
-(setq jav-load-path
-      (concat (expand-file-name "~/.emacs.d/")
-              "my-elfs/"))
-
-(add-to-list 'load-path jav-load-path)
+(let ((emacs-home (expand-file-name "~/.emacs.d/")))
+  ;; extension-dir :: some plugin that are not provided by *elpa
+  ;; jav-conf-dir  :: my customizations
+  ;; my-elfs       :: my elisp files
+  (let ((extension-dir (concat emacs-home "extensions/"))
+        (jav-conf-dir (concat emacs-home "my-elfs/")))
+    (add-to-list 'load-path extension-dir)
+    (add-to-list 'load-path jav-conf-dir)
+    ))
 
 (require 'jav-keys)
 (require 'jav-procs)
@@ -19,15 +17,14 @@
 (require 'jav-scheme)
 (require 'jav-haskell)
 
+;; highlight text between parentheses, might conflict with hl-sexp..
+;; (setq show-paren-style 'expression)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(menu-bar-mode nil)
- '(scroll-bar-mode nil)
- '(tool-bar-mode nil)
- '(blink-cursor-mode nil)
  '(custom-enabled-themes (quote (manoj-dark)))
  '(custom-safe-themes (quote ("e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(package-archives (quote (("melpa" . "http://melpa.milkbox.net/packages/") ("gnu" . "http://elpa.gnu.org/packages/")))))
