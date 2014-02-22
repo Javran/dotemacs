@@ -71,6 +71,11 @@
             (setq show-trailing-whitespace nil)))
 
 (setq ac-ignore-case nil)
+
+(define-key ac-complete-mode-map (kbd "C-n") 'ac-next)
+(define-key ac-complete-mode-map (kbd "C-p") 'ac-previous)
+(define-key ac-complete-mode-map (kbd "M-/") 'ac-stop)
+
 (setq-default show-trailing-whitespace t)
 
 (add-hook 'TeX-mode-hook

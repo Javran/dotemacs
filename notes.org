@@ -37,3 +37,6 @@
 ** org-mode
    * S-tab change level
    * M-RET new item(same list)
+** auto-complete
+   * C-p / C-n prev/next candidate
+   * M-/ cancel completion
