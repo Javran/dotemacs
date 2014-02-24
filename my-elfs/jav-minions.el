@@ -1,7 +1,6 @@
 ;; minions: a collection of customizations
 ;;  that only takes few lines.
 
-
 ;; seems to be an issue:
 ;;   https://github.com/dacap/keyfreq/issues/9
 (require 'cl)
@@ -9,6 +8,11 @@
 (require 'keyfreq)
 (require 'quack)
 (require 'yasnippet)
+
+;; seems ibus is not working for my pc,
+;; but I just leave these lines here...
+;; (require 'ibus)
+;; (add-hook 'after-init-hook 'ibus-mode-on)
 
 ;; emacs settings
 (menu-bar-mode -1)
@@ -76,15 +80,18 @@
 (define-key ac-complete-mode-map (kbd "C-p") 'ac-previous)
 (define-key ac-complete-mode-map (kbd "M-/") 'ac-stop)
 
-(setq-default show-trailing-whitespace t)
+;; I should turn on this only for source codes...
+;; (setq-default show-trailing-whitespace t)
 
 (add-hook 'TeX-mode-hook
           (lambda ()
+            (setq show-trailing-whitespace t)
             (auto-complete-mode t)))
 
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
             (progn
+              (setq show-trailing-whitespace t)
               (local-set-key
                (kbd "<f7>") 'eval-buffer)
               (local-set-key
@@ -92,7 +99,16 @@
 
 (add-hook 'markdown-mode-hook
           (lambda ()
+            (setq show-trailing-whitespace t)
             (local-set-key
              (kbd "<f7>") 'current-markdown-html-preview)))
+
+(add-hook 'haskell-mode-hook
+          (lambda ()
+            (setq show-trailing-whitespace t)))
+
+(add-hook 'scheme-mode-hook
+          (lambda ()
+            (setq show-trailing-whitespace t)))
 
 (provide 'jav-minions)
