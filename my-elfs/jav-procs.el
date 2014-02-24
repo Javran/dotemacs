@@ -107,4 +107,27 @@ vi style of % jumping to matching brace."
                        map))))
     (define-key newmap key def)))
 
+(defun pandoc-markdown-to-html (file-src file-dst)
+  "convert markdown files into HTML files."
+  (shell-command
+   (format "pandoc %s -o %s" file-src file-dst)))
+
+(defun current-markdown-html-preview ()
+  "generate HTML file for current editing file
+   using pandoc, and the open browser to preview
+   the resulting HTML file"
+  (interactive)
+  ;; create place to store the temp HTML file output
+  (mkdir "/tmp/markdown_tmps/" t)
+  (let* ((dst-dir "/tmp/markdown_tmps/")
+         (file-dst
+          (concat dst-dir
+                  (file-name-base (buffer-file-name))
+                  ".html"))
+         (url-dst
+          (concat "file://" file-dst)))
+    (pandoc-markdown-to-html (buffer-file-name)
+                             file-dst)
+    (browse-url url-dst)))
+
 (provide 'jav-procs)

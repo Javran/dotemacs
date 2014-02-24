@@ -39,8 +39,6 @@
 (add-hook 'lisp-mode-hook 'highlight-sexp-mode)
 (add-hook 'emacs-lisp-mode-hook 'highlight-sexp-mode)
 
-
-
 (put 'proc-entry 'safe-local-variable
      'safe-mit-scheme-entry-filenamep)
 

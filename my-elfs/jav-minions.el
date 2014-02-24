@@ -90,4 +90,9 @@
               (local-set-key
                (kbd "<return>") (key-binding (kbd "C-j"))))))
 
+(add-hook 'markdown-mode-hook
+          (lambda ()
+            (local-set-key
+             (kbd "<f7>") 'current-markdown-html-preview)))
+
 (provide 'jav-minions)
