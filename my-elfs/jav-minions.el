@@ -21,6 +21,11 @@
 (blink-cursor-mode 0)
 (global-linum-mode t)
 
+;; auto-complete extends several lines,
+;; which makes the column unstable while
+;; I'm typing something.
+(setq linum-format "%2d ")
+
 ;; highlight text between parentheses, might conflict with hl-sexp..
 ;; (setq show-paren-style 'expression)
 
