@@ -11,6 +11,7 @@
     (add-to-list 'load-path jav-conf-dir)
     ))
 
+(require 'jav-emacs)
 (require 'jav-keys)
 (require 'jav-procs)
 (require 'jav-misc)
