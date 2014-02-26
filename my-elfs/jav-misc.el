@@ -1,5 +1,8 @@
-;; minions: a collection of customizations
-;;  that only takes few lines.
+;;; jav-misc: a collection of small customizations
+;;;
+;;; this file contains customizations that takes only few lines.
+;;; some groups of customizations should be splitted
+;;; into new files to make my conf more organized.
 
 ;; seems to be an issue:
 ;;   https://github.com/dacap/keyfreq/issues/9
@@ -20,6 +23,7 @@
 (tool-bar-mode -1)
 (blink-cursor-mode 0)
 (global-linum-mode t)
+(column-number-mode nil)
 
 ;; auto-complete extends several lines,
 ;; which makes the column unstable while
@@ -32,7 +36,6 @@
 (setq
  TeX-PDF-mode t
  ac-auto-show-menu t
- haskell-indent-spaces 4
  hl-sexp-background-color "RoyalBlue4"
  )
 
@@ -124,4 +127,4 @@
 (add-to-list 'org-agenda-files
              "~/symlinks/my-notes/default.org")
 
-(provide 'jav-minions)
+(provide 'jav-misc)

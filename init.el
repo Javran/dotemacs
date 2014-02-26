@@ -13,7 +13,7 @@
 
 (require 'jav-keys)
 (require 'jav-procs)
-(require 'jav-minions)
+(require 'jav-misc)
 (require 'jav-scheme)
 (require 'jav-haskell)
 
