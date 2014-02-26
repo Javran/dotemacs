@@ -116,4 +116,12 @@
           (lambda ()
             (setq show-trailing-whitespace t)))
 
+;; org-mode
+(require 'org)
+;; when marking something as done
+;; always keep the time.
+(setq org-log-done t)
+(add-to-list 'org-agenda-files
+             "~/symlinks/my-notes/default.org")
+
 (provide 'jav-minions)
