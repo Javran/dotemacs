@@ -37,9 +37,13 @@
            markdown-mode-hook
            haskell-mode-hook
            scheme-mode-hook
+           makefile-mode-hook
            ))
   (add-hook maj-mod-hook
             (lambda ()
               (setq show-trailing-whitespace t))))
+
+;; https://github.com/senny/cabbage/issues/175
+(global-auto-revert-mode)
 
 (provide 'jav-emacs)

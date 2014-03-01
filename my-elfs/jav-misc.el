@@ -29,6 +29,11 @@
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
+;; for some reasons, tab doesn't work as expected
+(add-hook 'markdown-mode-hook
+          (lambda ()
+            (yas-minor-mode -1)))
+
 (yas-global-mode 1)
 ;; highlight current line
 (hlinum-activate)

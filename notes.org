@@ -15,6 +15,9 @@
 ** a list of extensions installed?
    keep a list of extensions installed both from *ELPA
    and `extension` dir
+** jav-proc
+   should only contain definitions that
+   are worthy to share among elfs
 * Quick reference
 ** global
    * C-x b <RET> <any buffer name> can also be used to create a new buffer
