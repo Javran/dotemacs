@@ -35,6 +35,11 @@
             (yas-minor-mode -1)))
 
 (yas-global-mode 1)
+
+(define-key yas-minor-mode-map (kbd "<tab>") nil)
+(define-key yas-minor-mode-map (kbd "TAB") nil)
+(define-key yas-minor-mode-map (kbd "<f6> e") 'yas-expand)
+
 ;; highlight current line
 (hlinum-activate)
 

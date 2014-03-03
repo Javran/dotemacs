@@ -7,11 +7,18 @@
 
 (require 'jav-procs)
 
+;; don't need overwrite-mode at all
+(define-key global-map (kbd "<insert>") nil)
+
 ;; assign <f2> for org-mode
 (global-unset-key (kbd "<f2>"))
 (global-set-key (kbd "<f2> l") 'org-store-link)
 (global-set-key (kbd "<f2> a") 'org-agenda)
 (global-set-key (kbd "<f2> b") 'org-iswitchb)
+
+;; assign <f6> for editing related tasks
+(global-unset-key (kbd "<f6>"))
+;; (global-set-key (kbd "<f6> e") 'yas-expand)
 
 (global-unset-key (kbd "<f9>"))
 ;; assign <f9> for git related operations
@@ -37,7 +44,7 @@
 (global-set-key (kbd "<C-S-right>")  'buf-move-right)
 
 ;; move to next/prev buffer
-(global-set-key (kbd "<C-tab>") 'next-buffer)
-(global-set-key (kbd "C-`") 'previous-buffer)
+(global-set-key (kbd "C-`") 'next-buffer)
+(global-set-key (kbd "<C-tab>") 'previous-buffer)
 
 (provide 'jav-keys)
