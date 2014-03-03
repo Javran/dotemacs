@@ -92,4 +92,6 @@
 (add-to-list 'org-agenda-files
              "~/symlinks/my-notes/default.org")
 
+(setq-default c-basic-offset 4)
+
 (provide 'jav-misc)
