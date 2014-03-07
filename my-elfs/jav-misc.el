@@ -28,6 +28,7 @@
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
 
 ;; for some reasons, tab doesn't work as expected
 (add-hook 'markdown-mode-hook
@@ -51,9 +52,16 @@
 (ido-mode 1)
 (setq ido-enable-flex-matching t)
 
+;; see manual: http://cx4a.org/software/auto-complete/manual.html#Installation
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/dict")
+(ac-config-default)
+
+
 (global-auto-complete-mode t)
 
 (add-to-list 'ac-modes 'markdown-mode)
+(add-to-list 'ac-modes 'org-mode)
 ;; Prevent Extraneous Tabs
 ;; http://www.gnu.org/software/emacs/manual/html_node/eintr/Indent-Tabs-Mode.html
 
@@ -88,6 +96,10 @@
           (lambda ()
             (local-set-key
              (kbd "<f7>") 'current-markdown-html-preview)))
+
+(add-hook 'makefile-mode-hook
+          (lambda ()
+            (auto-complete-mode)))
 
 ;; org-mode
 (require 'org)
