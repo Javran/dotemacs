@@ -6,6 +6,9 @@
 
 (setq haskell-indent-spaces 4)
 
+(add-to-list 'completion-ignored-extensions
+             ".hi")
+
 (setq haskell-indent-after-keywords
       (quote (("where" 4 0)
               ("of" 2)

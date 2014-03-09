@@ -22,6 +22,8 @@
 ;; I'm typing something.
 (setq linum-format "%2d ")
 
+(setq ido-ignore-extensions t)
+
 ;; markdown settings
 (autoload 'markdown-mode "markdown-mode"
    "Major mode for editing Markdown files" t)
