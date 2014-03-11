@@ -110,7 +110,7 @@ vi style of % jumping to matching brace."
 (defun pandoc-markdown-to-html (file-src file-dst)
   "convert markdown files into HTML files."
   (shell-command
-   (format "pandoc %s -s -o %s" file-src file-dst)))
+   (format "pandoc %s -s --highlight-style=pygments -o %s" file-src file-dst)))
 
 (defun current-markdown-html-preview ()
   "generate HTML file for current editing file
