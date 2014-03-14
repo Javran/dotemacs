@@ -113,4 +113,6 @@
 
 (setq-default c-basic-offset 4)
 
+(load-file "~/.emacs.d/extensions/ProofGeneral/ProofGeneral-4.2/generic/proof-site.el")
+
 (provide 'jav-misc)
