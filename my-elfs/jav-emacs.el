@@ -39,6 +39,7 @@
            scheme-mode-hook
            makefile-mode-hook
            c-mode-hook
+           haskell-cabal-mode-hook
            ))
   (add-hook maj-mod-hook
             (lambda ()
