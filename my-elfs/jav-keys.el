@@ -47,4 +47,7 @@
 (global-set-key (kbd "C-`") 'next-buffer)
 (global-set-key (kbd "<C-tab>") 'previous-buffer)
 
+;; I need the focus
+(global-set-key (kbd "C-x C-b") 'buffer-menu)
+
 (provide 'jav-keys)
