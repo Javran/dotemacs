@@ -19,14 +19,17 @@
         (newline-and-indent)))))
 
 ;; thanks to nounch for this command
+;; TODO: currently the window is not shown if output lines are not much
 (defun shell-command-and-go-to-bottom (cmdline)
   "run shell command, and move to the bottom of the result"
   (interactive "M")
   (let ((ret-val
          (shell-command cmdline "*Shell Command Output*")))
     (let ((w (get-buffer-window "*Shell Command Output*")))
-      (with-selected-window w
-        (end-of-buffer))
+      (if w
+          (with-selected-window w
+            (end-of-buffer))
+        (message "window not found"))
       (message "exitcode: %d (%s)" ret-val (current-time-string) ))))
 
 ;; TODO: refactor this command with the prev one?
