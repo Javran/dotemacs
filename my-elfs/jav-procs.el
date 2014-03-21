@@ -1,5 +1,8 @@
 ;; some customized procedures
 
+(defvar command-output-buffer
+  "*Shell Command Output*")
+
 (defun newline-before-current-line ()
   "start a new line before the current line
    and move cursor there"
@@ -19,31 +22,30 @@
         (newline-and-indent)))))
 
 ;; thanks to nounch for this command
-;; TODO: currently the window is not shown if output lines are not much
-(defun shell-command-and-go-to-bottom (cmdline)
-  "run shell command, and move to the bottom of the result"
+(defun shell-command-and-go-to-bottom (cmdline &optional compilation)
+  "run shell command, and move to the bottom of the result
+if optional argument 'compilation' is not nil, switch to
+compilation-mode for output buffer."
   (interactive "M")
   (let ((ret-val
-         (shell-command cmdline "*Shell Command Output*")))
-    (let ((w (get-buffer-window "*Shell Command Output*")))
-      (if w
+         (shell-command cmdline command-output-buffer)))
+    (let ((w (get-buffer-window command-output-buffer)))
+      ;; two possibilities:
+      ;; * output-buffer gets brought up,
+      ;;   we move to the bottom, and print exitcode in the mini-buffer
+      ;; * mini-buffer is used, in this case, nop.
+      (when w
           (with-selected-window w
-            (end-of-buffer))
-        (message "window not found"))
-      (message "exitcode: %d (%s)" ret-val (current-time-string) ))))
+            (when compilation
+              (compilation-mode))
+            (end-of-buffer)
+            (message "exitcode: %d (%s)" ret-val (current-time-string)))))))
 
-;; TODO: refactor this command with the prev one?
 (defun shell-command-compile-and-go-to-bottom (cmdline)
   "run shell command, and move to the bottom of the result
    the result will be shown in compliation-mode"
   (interactive "M")
-  (let ((ret-val
-         (shell-command cmdline "*Shell Command Output*")))
-    (let ((w (get-buffer-window "*Shell Command Output*")))
-      (with-selected-window w
-        (compilation-mode)
-        (end-of-buffer))
-      (message "exitcode: %d (%s)" ret-val (current-time-string)))))
+  (shell-command-and-go-to-bottom cmdline t))
 
 (defun goto-match-paren (arg)
   "Go to the matching parenthesis if on parenthesis, otherwise insert %.
@@ -51,13 +53,27 @@ vi style of % jumping to matching brace."
   (interactive "p")
   (cond ((looking-at "\\s\(") (forward-list 1) (backward-char 1))
         ((looking-at "\\s\)") (forward-char 1) (backward-list 1))
-        (t (self-insert-command (or arg 1)))))
+        (t nil)))
+
+(defun string-without-spacesp (str)
+  "test if a given value is a string and
+does not contain any space"
+ (and (stringp str)
+       (string-match "^[^[:space:]]*$" str)))
 
 (defun safe-mit-scheme-entry-filenamep (entry-file)
   "test if the given filename is safe to be used
    as a mit-scheme entry file"
-  (and (stringp entry-file)
-       (string-match "^[^[:space:]]*$" entry-file)))
+  (string-without-spacesp entry-file))
+
+(defun proc-entry-or-current-file ()
+  "examine and return variable 'proc-entry',
+if its value is empty, return current buffer file name"
+  (let ((p-entry (cdr (assoc 'proc-entry file-local-variables-alist))))
+    (if (and (stringp p-entry)
+             (not (string= p-entry "")))
+        p-entry
+      (buffer-file-name))))
 
 (defun run-mit-scheme-with-related-file ()
   "run mit-scheme with specified file
@@ -73,9 +89,7 @@ vi style of % jumping to matching brace."
                          (buffer-file-name))))
       (shell-command-compile-and-go-to-bottom
        (format "mit-scheme --load %s"
-               (shell-quote-argument file-to-run)))
-                                        ; TODO: what is this??
-                                        ;(revert-buffer t t t)
+               (shell-quote-argument (proc-entry-or-current-file))))
       )))
 
 ;; TODO: refactor and merge with run-mit-scheme-with-related-file
@@ -94,21 +108,7 @@ vi style of % jumping to matching brace."
       (shell-command-compile-and-go-to-bottom
        (format "racket %s"
                (shell-quote-argument file-to-run)))
-                                        ;(revert-buffer t t t)
       )))
-
-;; this function is current not used anywhere
-(defun local-set-minor-mode-key (mode key def)
-  "Overrides a minor mode keybinding for the local
-   buffer, by creating or altering keymaps stored in buffer-local
-   `minor-mode-overriding-map-alist'."
-  (let* ((oldmap (cdr (assoc mode minor-mode-map-alist)))
-         (newmap (or (cdr (assoc mode minor-mode-overriding-map-alist))
-                     (let ((map (make-sparse-keymap)))
-                       (set-keymap-parent map oldmap)
-                       (push `(,mode . ,map) minor-mode-overriding-map-alist)
-                       map))))
-    (define-key newmap key def)))
 
 (defun pandoc-markdown-to-html (file-src file-dst)
   "convert markdown files into HTML files."
