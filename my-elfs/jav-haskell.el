@@ -22,6 +22,14 @@
               "else"
               "let")))
 
+(defun run-current-haskell-file ()
+  "run current haskell file without
+   user interaction"
+  (interactive)
+  (shell-command-and-go-to-bottom
+   (format "runhaskell %s"
+           (shell-quote-argument (buffer-file-name)))))
+
 (defun my-haskell-mode-hook ()
   "customizations for haskell mode"
   (ghc-init)
@@ -30,6 +38,10 @@
   (turn-on-haskell-indent)
   (setq locale-coding-system 'utf-8)
   (flymake-haskell-multi-load)
+
+  (local-set-key
+   (kbd "<f7>")
+   'run-current-haskell-file)
   )
 
 (add-hook 'haskell-mode-hook 'my-haskell-mode-hook)
