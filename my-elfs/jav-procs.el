@@ -1,5 +1,9 @@
 ;; some customized procedures
 
+;; TODO: thie file should only store procedures that are commonly shared
+;; those files that are only related to a specific major mode
+;; should reside in the corresponding major-mode files.
+
 (defvar command-output-buffer
   "*Shell Command Output*")
 
@@ -82,17 +86,10 @@ if its value is empty, return current buffer file name"
    otherwise. `proc-entry` must be a string
    that does not contain any whitespace"
   (interactive)
-  (let ((p-entry (cdr (assoc 'proc-entry file-local-variables-alist))))
-    (let ((file-to-run (if (and (stringp p-entry)
-                                (not (string= p-entry "")))
-                           p-entry
-                         (buffer-file-name))))
-      (shell-command-compile-and-go-to-bottom
-       (format "mit-scheme --load %s"
-               (shell-quote-argument (proc-entry-or-current-file))))
-      )))
+  (shell-command-compile-and-go-to-bottom
+   (format "mit-scheme --load %s"
+           (shell-quote-argument (proc-entry-or-current-file)))))
 
-;; TODO: refactor and merge with run-mit-scheme-with-related-file
 (defun run-racket-with-related-file ()
   "run racket with specified file
    if file local variable `proc-entry` is valid,
@@ -100,15 +97,10 @@ if its value is empty, return current buffer file name"
    otherwise. `proc-entry` must be a string
    that does not contain any whitespace"
   (interactive)
-  (let ((p-entry (cdr (assoc 'proc-entry file-local-variables-alist))))
-    (let ((file-to-run (if (and (stringp p-entry)
-                                (not (string= p-entry "")))
-                           p-entry
-                         (buffer-file-name))))
-      (shell-command-compile-and-go-to-bottom
-       (format "racket %s"
-               (shell-quote-argument file-to-run)))
-      )))
+  (shell-command-compile-and-go-to-bottom
+   (format "racket %s"
+           (shell-quote-argument (proc-entry-or-current-file)))))
+
 
 (defun pandoc-markdown-to-html (file-src file-dst)
   "convert markdown files into HTML files."
