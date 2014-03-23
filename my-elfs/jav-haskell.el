@@ -12,14 +12,14 @@
 (setq haskell-indent-after-keywords
       (quote (("where" 4 0)
               ("of" 2)
-              ("do" 4)
+              ("do" 4 0)
               ("mdo" 4)
               ("rec" 2)
               ("in" 4 0)
               ("{" 2)
-              "if"
-              "then"
-              "else"
+              ("if" 4)
+              ("then" 2)
+              ("else" 2)
               "let")))
 
 (defun run-current-haskell-file ()
