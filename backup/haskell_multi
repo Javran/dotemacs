@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+# this file is modified from "flymake-haskell-multi"
+# in case it gets overwritten by package updating.
+
+sourcefile=$1
+ghc -Wall -fno-code -i${HOME}/lib/haskell/ $sourcefile
+if [ -x `which hlint` ]; then
+    hlint $sourcefile
+fi
