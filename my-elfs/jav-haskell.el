@@ -28,12 +28,16 @@
   (interactive)
   (shell-command-and-go-to-bottom
    (format "runhaskell %s"
-           (shell-quote-argument (buffer-file-name)))))
+           (shell-quote-argument (proc-entry-or-current-file)))))
 
 (defun my-haskell-mode-hook ()
   "customizations for haskell mode"
   (ghc-init)
-  (flymake-mode)
+
+  (flymake-haskell-multi-load)
+
+  ;; seems flymake and flymake-multi-load conflicts with each other
+  ;; (flymake-mode)
   (haskell-indentation-mode -1)
   (turn-on-haskell-indent)
   (setq locale-coding-system 'utf-8)
