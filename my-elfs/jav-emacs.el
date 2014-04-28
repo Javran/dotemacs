@@ -33,14 +33,15 @@
 
 (dolist (maj-mod-hook
          '(TeX-mode-hook
+           haskell-cabal-mode-hook
            emacs-lisp-mode-hook
            markdown-mode-hook
            haskell-mode-hook
            scheme-mode-hook
            makefile-mode-hook
            c-mode-hook
-           haskell-cabal-mode-hook
            R-mode-hook
+           tuareg-mode-hook
            ))
   (add-hook maj-mod-hook
             (lambda ()

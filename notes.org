@@ -18,6 +18,7 @@
 ** jav-proc
    should only contain definitions that
    are worthy to share among elfs
+** frequent dirs?
 * Quick reference
 ** global
    * C-x b <RET> <any buffer name> can also be used to create a new buffer

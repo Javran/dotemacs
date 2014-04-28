@@ -33,6 +33,7 @@
  '(custom-enabled-themes (quote (manoj-dark)))
  '(custom-safe-themes (quote ("e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(package-archives (quote (("melpa" . "http://melpa.milkbox.net/packages/") ("gnu" . "http://elpa.gnu.org/packages/"))))
+ '(quack-programs (quote ("mzscheme" "racket" "guile" "mit-scheme" "scheme")))
  '(tooltip-hide-delay 100000))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
