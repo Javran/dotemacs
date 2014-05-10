@@ -32,6 +32,9 @@
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
 
+(add-to-list 'auto-mode-alist '("\\.\\(pl\\|pro\\|lgt\\)" . prolog-mode))
+
+
 ;; for some reasons, tab doesn't work as expected
 (add-hook 'markdown-mode-hook
           (lambda ()
@@ -102,6 +105,22 @@
 (add-hook 'makefile-mode-hook
           (lambda ()
             (auto-complete-mode)))
+
+
+(defun run-current-prolog-file ()
+  "run current haskell file without
+   user interaction"
+  (interactive)
+  (shell-command-and-go-to-bottom
+   (format "gprolog --consult-file %s"
+           (shell-quote-argument (proc-entry-or-current-file)))))
+
+(add-hook 'prolog-mode-hook
+          (lambda ()
+            (auto-complete-mode)
+            (local-set-key
+             (kbd "<f7>")
+             'run-current-prolog-file)))
 
 ;; org-mode
 (require 'org)
