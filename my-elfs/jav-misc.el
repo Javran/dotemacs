@@ -132,8 +132,6 @@
 
 (setq-default c-basic-offset 4)
 
-(load-file "~/.emacs.d/extensions/ProofGeneral/ProofGeneral-4.2/generic/proof-site.el")
-
 (require 'flymake-cursor)
 
 (provide 'jav-misc)
