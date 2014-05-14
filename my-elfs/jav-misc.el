@@ -127,8 +127,18 @@
 ;; when marking something as done
 ;; always keep the time.
 (setq org-log-done t)
-(add-to-list 'org-agenda-files
-             "~/symlinks/my-notes/default.org")
+
+(add-to-list
+ 'org-agenda-files
+ "~/symlinks/org-mode/default.org")
+
+(add-to-list
+ 'org-agenda-files
+ "~/symlinks/org-mode/mobile.org")
+
+(setq org-mobile-inbox-for-pull "~/symlinks/org-mode/mobile.org")
+(setq org-mobile-directory "~/symlinks/org-mobile-sync/")
+(setq org-directory "~/symlinks/org-mode/")
 
 (setq-default c-basic-offset 4)
 
