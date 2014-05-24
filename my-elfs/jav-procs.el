@@ -125,4 +125,13 @@ if its value is empty, return current buffer file name"
                              file-dst)
     (browse-url url-dst)))
 
+;; http://stackoverflow.com/questions/20023363/emacs-remove-region-read-only
+(defun set-region-writeable (begin end)
+  "See http://stackoverflow.com/questions/7410125"
+  (interactive "r")
+  (let ((modified (buffer-modified-p))
+        (inhibit-read-only t))
+    (remove-text-properties begin end '(read-only t))
+    (set-buffer-modified-p modified)))
+
 (provide 'jav-procs)
