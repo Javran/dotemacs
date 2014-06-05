@@ -25,6 +25,9 @@
 (global-set-key (kbd "<f9> s") 'magit-status)
 (global-set-key (kbd "<f9> l") 'magit-log)
 
+(global-set-key (kbd "C-c g s") 'magit-status)
+(global-set-key (kbd "C-c g l") 'magit-log)
+
 ;; let smex find all possible commands
 (global-set-key (kbd "M-x") 'smex)
 ;; only let smex include related commands
