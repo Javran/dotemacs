@@ -1,5 +1,11 @@
 ;; global key settings
 
+;; a document describing key binding convension
+;; can be found in the following link:
+;; http://www.gnu.org/software/emacs/manual/html_node/elisp/Key-Binding-Conventions.html
+;; it seems I'd better define key bindings that begins
+;; with C-c.
+
 ;; smex requires initialization
 ;;   otherwise smex-major-mode-commands
 ;;   might not work
