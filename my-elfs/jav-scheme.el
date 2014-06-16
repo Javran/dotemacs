@@ -30,6 +30,9 @@
 (add-hook 'scheme-mode-hook
 	  (lambda ()
             (local-set-key
+             (kbd "C-c C-c")
+             'run-scheme-according-to-its-type)
+            (local-set-key
              (kbd "<f7>")
              'run-scheme-according-to-its-type)))
 
