@@ -100,7 +100,10 @@
 (add-hook 'markdown-mode-hook
           (lambda ()
             (local-set-key
-             (kbd "<f7>") 'current-markdown-html-preview)))
+             (kbd "<f7>") 'current-markdown-html-preview)
+            (local-set-key
+             (kbd "C-c C-c") 'current-markdown-html-preview)))
+
 
 (add-hook 'makefile-mode-hook
           (lambda ()
