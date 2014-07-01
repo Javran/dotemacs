@@ -46,6 +46,9 @@
   (local-set-key
    (kbd "<f7>")
    'run-current-haskell-file)
+  (local-set-key
+   (kbd "C-c C-c")
+   'run-current-haskell-file)
   )
 
 (add-hook 'haskell-mode-hook 'my-haskell-mode-hook)

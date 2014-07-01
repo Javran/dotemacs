@@ -21,6 +21,12 @@
 (global-set-key (kbd "<f2> l") 'org-store-link)
 (global-set-key (kbd "<f2> a") 'org-agenda)
 (global-set-key (kbd "<f2> b") 'org-iswitchb)
+;; another set of key bindings without using function keys
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c c") 'org-capture)
+(global-set-key (kbd "C-c a a") 'org-agenda)
+;; global TODO list in agenda mode?
+(global-set-key (kbd "C-c b") 'org-iswitchb)
 
 ;; assign <f6> for editing related tasks
 (global-unset-key (kbd "<f6>"))
@@ -58,5 +64,8 @@
 
 ;; I need the focus
 (global-set-key (kbd "C-x C-b") 'buffer-menu)
+
+;; ag shortcut
+(global-set-key (kbd "C-x C-g") 'ag)
 
 (provide 'jav-keys)
