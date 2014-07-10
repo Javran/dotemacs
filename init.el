@@ -9,7 +9,6 @@
         (jav-conf-dir (concat emacs-home "my-elfs/")))
     (add-to-list 'load-path extension-dir)
     (add-to-list 'load-path jav-conf-dir)
-;;    (add-to-list 'load-path (concat emacs-home "extensions/structured-haskell-mode/elisp"))
     ))
 
 (require 'jav-emacs)
@@ -18,6 +17,7 @@
 (require 'jav-misc)
 (require 'jav-scheme)
 (require 'jav-haskell)
+(load "/usr/share/emacs/site-lisp/ProofGeneral/generic/proof-site.el")
 
 ;; highlight text between parentheses, might conflict with hl-sexp..
 ;; (setq show-paren-style 'expression)
@@ -33,6 +33,8 @@
  '(custom-enabled-themes (quote (manoj-dark)))
  '(custom-safe-themes (quote ("e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(package-archives (quote (("melpa" . "http://melpa-stable.milkbox.net/packages/") ("gnu" . "http://elpa.gnu.org/packages/"))))
+ '(proof-splash-enable nil)
+ '(proof-splash-time 0)
  '(quack-programs (quote ("mzscheme" "racket" "guile" "mit-scheme" "scheme")))
  '(tooltip-hide-delay 100000))
 (custom-set-faces
