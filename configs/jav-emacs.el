@@ -12,7 +12,7 @@
 
 (setq
  TeX-PDF-mode t
- ac-auto-show-menu t
+;; ac-auto-show-menu t
  hl-sexp-background-color "RoyalBlue4"
  )
 
@@ -40,8 +40,12 @@
            scheme-mode-hook
            makefile-mode-hook
            c-mode-hook
+           c++-mode-hook
            R-mode-hook
            tuareg-mode-hook
+           coq-mode-hook
+           clojure-mode-hook
+           python-mode-hook
            ))
   (add-hook maj-mod-hook
             (lambda ()

@@ -1,6 +1,5 @@
 ;; customizations regarding scheme
 
-
 (setq quack-fontify-style nil
       quack-programs '("racket" "guile" "mit-scheme" "scheme"))
 

@@ -19,6 +19,8 @@
    should only contain definitions that
    are worthy to share among elfs
 ** frequent dirs?
+** shell-like string transformation?
+   like "\r", or even bash colors?
 * Quick reference
 ** links
    * some convension about key bindings: http://www.gnu.org/software/emacs/manual/html_node/elisp/Key-Binding-Conventions.html

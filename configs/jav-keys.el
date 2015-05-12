@@ -18,18 +18,20 @@
 
 ;; assign <f2> for org-mode
 (global-unset-key (kbd "<f2>"))
+(global-set-key (kbd "<f2> c") 'org-capture)
 (global-set-key (kbd "<f2> l") 'org-store-link)
 (global-set-key (kbd "<f2> a") 'org-agenda)
 (global-set-key (kbd "<f2> b") 'org-iswitchb)
 ;; another set of key bindings without using function keys
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c c") 'org-capture)
-(global-set-key (kbd "C-c a a") 'org-agenda)
+(global-set-key (kbd "C-c a") 'org-agenda)
 ;; global TODO list in agenda mode?
 (global-set-key (kbd "C-c b") 'org-iswitchb)
 
 ;; assign <f6> for editing related tasks
-(global-unset-key (kbd "<f6>"))
+;; TODO: this working around is .. not good
+;; (global-unset-key (kbd "<f6>"))
 ;; (global-set-key (kbd "<f6> e") 'yas-expand)
 
 (global-unset-key (kbd "<f9>"))
@@ -48,7 +50,6 @@
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 ;; new functionalities that I usually use
-(global-set-key (kbd "C-,") 'newline-before-current-line)
 (global-set-key (kbd "C-5") 'goto-match-paren)
 
 ;; buffer-move

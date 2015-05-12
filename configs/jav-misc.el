@@ -10,12 +10,7 @@
 (require 'hlinum)
 (require 'keyfreq)
 (require 'quack)
-(require 'yasnippet)
-
-;; seems ibus is not working for my pc,
-;; but I just leave these lines here...
-;; (require 'ibus)
-;; (add-hook 'after-init-hook 'ibus-mode-on)
+;; (require 'yasnippet)
 
 ;; auto-complete extends several lines,
 ;; which makes the column unstable while
@@ -32,19 +27,20 @@
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
 
-(add-to-list 'auto-mode-alist '("\\.\\(pl\\|pro\\|lgt\\)" . prolog-mode))
+;; (add-to-list 'auto-mode-alist '("\\.\\(pl\\|pro\\|lgt\\)" . prolog-mode))
 
 
 ;; for some reasons, tab doesn't work as expected
 (add-hook 'markdown-mode-hook
           (lambda ()
-            (yas-minor-mode -1)))
+            ;;(yas-minor-mode -1)
+            ))
 
-(yas-global-mode 1)
+;;(yas-global-mode 1)
 
-(define-key yas-minor-mode-map (kbd "<tab>") nil)
-(define-key yas-minor-mode-map (kbd "TAB") nil)
-(define-key yas-minor-mode-map (kbd "<f6> e") 'yas-expand)
+;;(define-key yas-minor-mode-map (kbd "<tab>") nil)
+;;(define-key yas-minor-mode-map (kbd "TAB") nil)
+;; (define-key yas-minor-mode-map (kbd "<f6> e") 'yas-expand)
 
 ;; highlight current line
 (hlinum-activate)
@@ -56,17 +52,20 @@
 ;; enable ido-mode
 (ido-mode 1)
 (setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+;; http://stackoverflow.com/questions/7479565/emacs-ido-mode-and-creating-new-files-in-directories-it-keeps-changing-the-dire
+(setq ido-auto-merge-work-directories-length -1)
 
 ;; see manual: http://cx4a.org/software/auto-complete/manual.html#Installation
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/dict")
-(ac-config-default)
+;; (require 'auto-complete-config)
+;; (add-to-list 'ac-dictionary-directories "~/.emacs.d/dict")
+;; (ac-config-default)
 
 
-(global-auto-complete-mode t)
+;; (global-auto-complete-mode t)
 
-(add-to-list 'ac-modes 'markdown-mode)
-(add-to-list 'ac-modes 'org-mode)
+;; (add-to-list 'ac-modes 'markdown-mode)
+;; (add-to-list 'ac-modes 'org-mode)
 ;; Prevent Extraneous Tabs
 ;; http://www.gnu.org/software/emacs/manual/html_node/eintr/Indent-Tabs-Mode.html
 
@@ -76,18 +75,19 @@
             ;; no need to visualize any whitespaces.
             (setq show-trailing-whitespace nil)))
 
-(setq ac-ignore-case nil)
+;; (setq ac-ignore-case nil)
 
-(define-key ac-complete-mode-map (kbd "C-n") 'ac-next)
-(define-key ac-complete-mode-map (kbd "C-p") 'ac-previous)
-(define-key ac-complete-mode-map (kbd "M-/") 'ac-stop)
+;; (define-key ac-complete-mode-map (kbd "C-n") 'ac-next)
+;; (define-key ac-complete-mode-map (kbd "C-p") 'ac-previous)
+;; (define-key ac-complete-mode-map (kbd "M-/") 'ac-stop)
 
 ;; I should turn on this only for source codes...
 ;; (setq-default show-trailing-whitespace t)
 
-(add-hook 'TeX-mode-hook
-          (lambda ()
-            (auto-complete-mode t)))
+
+;; (add-hook 'TeX-mode-hook
+;;           (lambda ()
+;;             (auto-complete-mode t)))
 
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
@@ -100,14 +100,14 @@
 (add-hook 'markdown-mode-hook
           (lambda ()
             (local-set-key
-             (kbd "<f7>") 'current-markdown-html-preview)
+             (kbd "<f7>") 'current-markdown-pdf-preview)
             (local-set-key
-             (kbd "C-c C-c") 'current-markdown-html-preview)))
+             (kbd "C-c C-c") 'current-markdown-pdf-preview)))
 
 
-(add-hook 'makefile-mode-hook
-          (lambda ()
-            (auto-complete-mode)))
+;; (add-hook 'makefile-mode-hook
+;;           (lambda ()
+;;             (auto-complete-mode)))
 
 
 (defun run-current-prolog-file ()
@@ -118,15 +118,17 @@
    (format "gprolog --consult-file %s"
            (shell-quote-argument (proc-entry-or-current-file)))))
 
-(add-hook 'prolog-mode-hook
-          (lambda ()
-            (auto-complete-mode)
-            (local-set-key
-             (kbd "<f7>")
-             'run-current-prolog-file)))
+;; (add-hook 'prolog-mode-hook
+;;           (lambda ()
+;;             (auto-complete-mode)
+;;             (local-set-key
+;;              (kbd "<f7>")
+;;              'run-current-prolog-file)))
 
 ;; org-mode
 (require 'org)
+
+(add-hook 'org-mode-hook '(load "auctex.el" nil t t))
 ;; when marking something as done
 ;; always keep the time.
 (setq org-log-done t)
@@ -143,8 +145,29 @@
 (setq org-mobile-directory "~/symlinks/org-mobile-sync/")
 (setq org-directory "~/symlinks/org-mode/")
 
+(setq org-default-notes-file "~/symlinks/org-mode/default.org")
+
 (setq-default c-basic-offset 4)
 
-(require 'flymake-cursor)
+(defun run-python-file ()
+  "run mit-scheme with specified file
+   if file local variable `proc-entry` is valid,
+   it will be used, the current file will be used
+   otherwise. `proc-entry` must be a string
+   that does not contain any whitespace"
+  (interactive)
+  (shell-command-compile-and-go-to-bottom
+   (format "python %s"
+           (shell-quote-argument (proc-entry-or-current-file)))))
+
+(add-hook 'python-mode-hook
+          (lambda ()
+            (local-set-key
+             (kbd "C-c C-c")
+             'run-python-file)))
+
+(require 'sr-speedbar)
+
+(add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 
 (provide 'jav-misc)

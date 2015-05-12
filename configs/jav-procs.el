@@ -1,4 +1,4 @@
-;; some customized procedures
+;;; some customized procedures
 
 ;; TODO: thie file should only store procedures that are commonly shared
 ;; those files that are only related to a specific major mode
@@ -6,24 +6,6 @@
 
 (defvar command-output-buffer
   "*Shell Command Output*")
-
-(defun newline-before-current-line ()
-  "start a new line before the current line
-   and move cursor there"
-  (interactive)
-  (let ((n (line-number-at-pos)))
-    (if (= n 1)
-        ;; for the first line:
-        ;; move to begin, nl, prev-line
-        (progn
-          (beginning-of-line)
-          (newline)
-          (previous-line))
-      ;; else, we already have a previous line
-      (progn
-        (previous-line)
-        (end-of-line)
-        (newline-and-indent)))))
 
 ;; thanks to nounch for this command
 (defun shell-command-and-go-to-bottom (cmdline &optional compilation)
@@ -102,28 +84,30 @@ if its value is empty, return current buffer file name"
            (shell-quote-argument (proc-entry-or-current-file)))))
 
 
-(defun pandoc-markdown-to-html (file-src file-dst)
-  "convert markdown files into HTML files."
+(defun pandoc-markdown-to-pdf (file-src file-dst)
+  "convert markdown files into pdf files."
   (shell-command
-   (format "pandoc %s -s --highlight-style=pygments -o %s" file-src file-dst)))
+   (format "pandoc %s -s --highlight-style=pygments -V fontsize=12pt -t latex+tex_math_dollars  -o %s" file-src file-dst)))
 
-(defun current-markdown-html-preview ()
-  "generate HTML file for current editing file
+(defun current-markdown-pdf-preview ()
+  "generate pdf file for current editing file
    using pandoc, and the open browser to preview
-   the resulting HTML file"
+   the resulting pdf file"
   (interactive)
-  ;; create place to store the temp HTML file output
+  ;; create place to store the temp PDF file output
   (mkdir "/tmp/markdown_tmps/" t)
   (let* ((dst-dir "/tmp/markdown_tmps/")
          (file-dst
           (concat dst-dir
                   (file-name-base (buffer-file-name))
-                  ".html"))
-         (url-dst
-          (concat "file://" file-dst)))
-    (pandoc-markdown-to-html (buffer-file-name)
+                  ".pdf")))
+    (pandoc-markdown-to-pdf (buffer-file-name)
                              file-dst)
-    (browse-url url-dst)))
+
+    (call-process-shell-command (concat "xdg-open "
+                                        file-dst
+                                        " &")
+                                nil 0)))
 
 ;; http://stackoverflow.com/questions/20023363/emacs-remove-region-read-only
 (defun set-region-writeable (begin end)
@@ -133,5 +117,15 @@ if its value is empty, return current buffer file name"
         (inhibit-read-only t))
     (remove-text-properties begin end '(read-only t))
     (set-buffer-modified-p modified)))
+
+;; from: http://stackoverflow.com/questions/3417438/closing-all-other-buffers-in-emacs
+(defun kill-other-buffers ()
+  "Kill all other buffers."
+  (interactive)
+  (mapc 'kill-buffer
+        (delq (current-buffer)
+              (remove-if-not 'buffer-file-name (buffer-list)))))
+
+;; http://stackoverflow.com/questions/19407278/emacs-overwrite-with-carriage-return
 
 (provide 'jav-procs)
