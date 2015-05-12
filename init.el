@@ -23,6 +23,9 @@
 ;; and we don't have to be mad about emacs producing quite unreadable codes
 (require 'jav-init)
 
+(load-theme 'solarized-dark t)
+(setq solarized-high-contrast-mode-line t)
+
 ;; see discussion: http://stackoverflow.com/questions/22470820/font-lock-mode-in-haskell-mode-seems-to-ruin-the-width-of-single-spaces-in-emacs (theme manoj-dark breaks layout)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -31,10 +34,6 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
    ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
-  '(custom-enabled-themes (quote (manoj-dark)))
- '(custom-safe-themes
-   (quote
-    ("e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(flycheck-disabled-checkers (quote (emacs-lisp-checkdoc)))
  '(haskell-cabal-list-comma-position (quote after))
  '(hi2-ifte-offset 2)
