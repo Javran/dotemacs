@@ -1,10 +1,10 @@
 ;; customizations regarding scheme
 
-(setq quack-fontify-style nil
-      quack-programs '("racket" "guile" "mit-scheme" "scheme"))
+;;(setq quack-fontify-style nil
+;;      quack-programs '("racket" "guile" "mit-scheme" "scheme"))
 
 ;; go away, I need ido-mode
-(setq quack-remap-find-file-bindings-p nil)
+;;(setq quack-remap-find-file-bindings-p nil)
 
 (require 'jav-procs)
 

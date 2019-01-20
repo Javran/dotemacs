@@ -9,7 +9,6 @@
 (require 'cl)
 (require 'hlinum)
 (require 'keyfreq)
-(require 'quack)
 ;; (require 'yasnippet)
 
 ;; auto-complete extends several lines,
@@ -19,6 +18,10 @@
 
 (setq ido-ignore-extensions t)
 
+(add-to-list
+ 'completion-ignored-extensions
+ ".ibc")
+
 ;; markdown settings
 (autoload 'markdown-mode "markdown-mode"
    "Major mode for editing Markdown files" t)
@@ -26,6 +29,31 @@
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
+
+(setq js2-strict-missing-semi-warning nil)
+(setq js2-missing-semi-one-line-override nil)
+
+(defun my/use-eslint-from-node-modules ()
+  (let* ((root (locate-dominating-file
+                (or (buffer-file-name) default-directory)
+                "node_modules"))
+         (eslint (and root
+                      (expand-file-name "node_modules/eslint/bin/eslint.js"
+                                        root))))
+    (when (and eslint (file-executable-p eslint))
+      (setq-local flycheck-javascript-eslint-executable eslint))))
+(add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
+
+(defun my/use-tslint-from-node-modules ()
+  (let* ((root (locate-dominating-file
+                (or (buffer-file-name) default-directory)
+                "node_modules"))
+         (tslint (and root
+                      (expand-file-name "node_modules/tslint/bin/tslint"
+                                        root))))
+    (when (and tslint (file-executable-p tslint))
+      (setq-local flycheck-typescript-tslint-executable tslint))))
+(add-hook 'flycheck-mode-hook #'my/use-tslint-from-node-modules)
 
 ;; (add-to-list 'auto-mode-alist '("\\.\\(pl\\|pro\\|lgt\\)" . prolog-mode))
 
@@ -69,21 +97,11 @@
 ;; Prevent Extraneous Tabs
 ;; http://www.gnu.org/software/emacs/manual/html_node/eintr/Indent-Tabs-Mode.html
 
-(add-hook 'compilation-mode-hook
-          (lambda ()
-            ;; this mode just colorizes some output,
-            ;; no need to visualize any whitespaces.
-            (setq show-trailing-whitespace nil)))
-
 ;; (setq ac-ignore-case nil)
 
 ;; (define-key ac-complete-mode-map (kbd "C-n") 'ac-next)
 ;; (define-key ac-complete-mode-map (kbd "C-p") 'ac-previous)
 ;; (define-key ac-complete-mode-map (kbd "M-/") 'ac-stop)
-
-;; I should turn on this only for source codes...
-;; (setq-default show-trailing-whitespace t)
-
 
 ;; (add-hook 'TeX-mode-hook
 ;;           (lambda ()
@@ -108,6 +126,12 @@
 ;; (add-hook 'makefile-mode-hook
 ;;           (lambda ()
 ;;             (auto-complete-mode)))
+(add-hook 'c++-mode-hook
+          (lambda ()
+            (flycheck-gcc-include-path
+             "/usr/include/qt5"
+             "/usr/include/qt5/QtCore"
+             "/usr/include/qt5/QtWidgets")))
 
 
 (defun run-current-prolog-file ()

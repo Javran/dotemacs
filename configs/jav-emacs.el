@@ -46,10 +46,16 @@
            coq-mode-hook
            clojure-mode-hook
            python-mode-hook
+           html-mode-hook
+           compilation-mode-hook
+           js-mode-hook
+           css-mode-hook
+           web-mode-hook
            ))
   (add-hook maj-mod-hook
             (lambda ()
               (setq show-trailing-whitespace t))))
+
 
 ;; https://github.com/senny/cabbage/issues/175
 (global-auto-revert-mode)

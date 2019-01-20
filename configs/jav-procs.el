@@ -21,11 +21,11 @@ compilation-mode for output buffer."
       ;;   we move to the bottom, and print exitcode in the mini-buffer
       ;; * mini-buffer is used, in this case, nop.
       (when w
-          (with-selected-window w
-            (when compilation
-              (compilation-mode))
-            (end-of-buffer)
-            (message "exitcode: %d (%s)" ret-val (current-time-string)))))))
+        (with-selected-window w
+          (when compilation
+            (compilation-mode))
+          (goto-char (point-max))
+          (message "exitcode: %d (%s)" ret-val (current-time-string)))))))
 
 (defun shell-command-compile-and-go-to-bottom (cmdline)
   "run shell command, and move to the bottom of the result
@@ -87,7 +87,7 @@ if its value is empty, return current buffer file name"
 (defun pandoc-markdown-to-pdf (file-src file-dst)
   "convert markdown files into pdf files."
   (shell-command
-   (format "pandoc %s -s --highlight-style=pygments -V fontsize=12pt -t latex+tex_math_dollars  -o %s" file-src file-dst)))
+   (format "pandoc %s -s --pdf-engine=xelatex --highlight-style=pygments -V fontsize=12pt -t latex+tex_math_dollars  -o %s" file-src file-dst)))
 
 (defun current-markdown-pdf-preview ()
   "generate pdf file for current editing file
@@ -127,5 +127,38 @@ if its value is empty, return current buffer file name"
               (remove-if-not 'buffer-file-name (buffer-list)))))
 
 ;; http://stackoverflow.com/questions/19407278/emacs-overwrite-with-carriage-return
+
+(defun shell-like-filter (proc string)
+  "Fill the buffer in the same way as it would be shown in bash"
+  (let* ((buffer (process-buffer proc))
+         (window (get-buffer-window buffer)))
+    (with-current-buffer buffer
+      ;; make sure we have a mark
+      (if (not (mark)) (push-mark))
+      ;; use the mark to represent the cursor location
+      (exchange-point-and-mark)
+      (dolist (char (string-to-list string))
+        (cond
+         ;; carriage return
+         ((char-equal char ?\r)
+          (move-beginning-of-line 1))
+         ;; newline
+         ((char-equal char ?\n)
+          (move-end-of-line 1)(newline))
+         (t
+          ;; Overwrite character
+          (if (/= (point) (point-max))
+              (delete-char 1))
+          (insert char))))
+      (exchange-point-and-mark))
+    (if window
+        (with-selected-window window
+          (goto-char (point-max))))))
+
+ ;; (progn
+ ;;  (setq proc
+ ;;        (start-process "ghcghc" command-output-buffer
+ ;;                       "/usr/bin/runghc" "/tmp/tmp/Carry.hs"))
+ ;;  (set-process-filter proc 'shell-like-filter))
 
 (provide 'jav-procs)
