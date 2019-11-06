@@ -1,21 +1,14 @@
 ;;; customizations for haskell-mode
 
-;; (setq haskell-indent-spaces 4)
+(setq haskell-indent-spaces 4)
 
 (add-to-list
  'completion-ignored-extensions
  ".hi")
 
-(defun run-current-haskell-file ()
-  "run current haskell file without
-   user interaction"
-  (interactive)
-  (shell-command-and-go-to-bottom
-   (format "stack exec -- runghc %s"
-           (shell-quote-argument (proc-entry-or-current-file)))))
-
-;;(eval-after-load 'flycheck
-;;  '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
+;; https://github.com/flycheck/flycheck-haskell/issues/89#issuecomment-394078307
+(eval-after-load 'flycheck
+  '(add-hook 'haskell-mode-hook #'flycheck-haskell-setup))
 
 ;; (eval-after-load 'flycheck
 ;;   '(require 'flycheck-hdevtools))
@@ -27,10 +20,16 @@
 ;; (autoload 'ghc-init "ghc" nil t)
 ;; (autoload 'ghc-debug "ghc" nil t)
 
+;;(add-hook 'haskell-mode-hook
+;;          (lambda ()
+;;            (set (make-local-variable 'company-backends)
+;;                 (append '((company-capf company-dabbrev-code))
+;;                         company-backends))))
+
 (defun my-haskell-mode-hook ()
   "customizations for haskell mode"
 
-  (#'flycheck-haskell-setup)
+  ;; (#'flycheck-haskell-setup)
 
   ;; (ghc-init)
 
@@ -44,14 +43,6 @@
   ;; (setq company-ghc-show-info nil)
 
   ;; (hindent-mode)
-
-  ;; (local-set-key
-  ;;  (kbd "<f7>")
-  ;;  'run-current-haskell-file)
-  ;; (local-set-key
-  ;;  (kbd "C-c C-c")
-  ;;  'run-current-haskell-file)
-
   )
 
 (add-hook 'haskell-mode-hook 'my-haskell-mode-hook)

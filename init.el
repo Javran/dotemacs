@@ -10,10 +10,10 @@
 
 (setenv "PATH"
   (concat
-   (expand-file-name "~/.nvm/versions/node/v10.15.0/bin") path-separator
+   (expand-file-name "~/.nvm/versions/node/v10.15.3/bin") path-separator
    (getenv "PATH")))
 (add-to-list 'exec-path
-             (expand-file-name "~/.nvm/versions/node/v10.15.0/bin"))
+             (expand-file-name "~/.nvm/versions/node/v10.15.3/bin"))
 (package-initialize)
 
 (dolist
@@ -68,11 +68,12 @@
  '(hi2-starter-offset 0)
  '(ido-default-file-method (quote selected-window))
  '(js-indent-level 2)
+ '(line-spacing 1)
  '(magit-diff-use-overlays nil)
  '(magit-use-overlays nil)
  '(package-selected-packages
    (quote
-    (flycheck-haskell kotlin-mode scala-mode csharp-mode typescript-mode llvm-mode json-mode web-mode mocha tuareg tabbar-ruler sr-speedbar solarized-theme smex racket-mode psci paredit magit lua-mode idris-mode fuel flymake-hlint flymake-haskell-multi flymake-cursor flycheck-purescript flycheck-hdevtools flycheck-elm expand-region ess elm-mode elixir-mode deferred ctable company-ghc company-coq company-cabal company-auctex coffee-mode clojure-test-mode cdlatex buffer-move bison-mode auto-complete ag keyfreq hindent hi2 hlinum)))
+    (flycheck-haskell yaml-mode protobuf-mode kotlin-mode scala-mode csharp-mode typescript-mode llvm-mode json-mode web-mode mocha tuareg tabbar-ruler sr-speedbar solarized-theme smex racket-mode psci paredit magit lua-mode idris-mode fuel flymake-hlint flymake-haskell-multi flymake-cursor flycheck-purescript flycheck-hdevtools flycheck-elm expand-region ess elm-mode elixir-mode deferred ctable company-ghc company-coq company-cabal company-auctex coffee-mode clojure-test-mode cdlatex buffer-move bison-mode auto-complete ag keyfreq hindent hi2 hlinum)))
  '(proof-splash-enable nil)
  '(proof-splash-time 0)
  '(safe-local-variable-values
