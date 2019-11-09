@@ -19,3 +19,30 @@
   (add-to-list 'load-path lpath))
 
 (load-file "~/.emacs.d/configs/global.el")
+
+;;; Look-and-feel related stuff are organized here because it is easier to simply eval-buffer and try it out.
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+(blink-cursor-mode 0)
+(global-linum-mode t)
+(column-number-mode nil)
+
+;; https://github.com/bbatsov/solarized-emacs
+(load-theme 'solarized-dark t)
+;; make the modeline high contrast
+(setq solarized-high-contrast-mode-line t)
+
+;;; Following parts are reserved for emacs to update its own configs.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages (quote (solarized-theme))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

@@ -1,12 +1,5 @@
 ;;; Settings that should be applied globally.
 
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
-(blink-cursor-mode 0)
-(global-linum-mode t)
-(column-number-mode nil)
-
 ;; always show the balancing parenthesis
 (show-paren-mode 1)
 (setq-default indent-tabs-mode nil)
