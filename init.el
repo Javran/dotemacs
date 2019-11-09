@@ -15,7 +15,7 @@
     (lpath
      (list
       ;; extensions not provided by *ELPA
-      (expand-file-name "extensions" user-emacs-directory)
-      ;; my own customization
-      (expand-file-name "configs" user-emacs-directory)))
+      (expand-file-name "extensions" user-emacs-directory)))
   (add-to-list 'load-path lpath))
+
+(load-file "~/.emacs.d/configs/global.el")
