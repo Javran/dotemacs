@@ -33,3 +33,7 @@
 
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
+
+;; move to next/prev buffer
+(global-set-key (kbd "C-`") 'next-buffer)
+(global-set-key (kbd "<C-tab>") 'previous-buffer)
