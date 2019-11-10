@@ -15,3 +15,7 @@
 
 ;; https://github.com/senny/cabbage/issues/175
 (global-auto-revert-mode 1)
+
+;; global key bindings
+(global-set-key (kbd "C-c g s") 'magit-status)
+(global-set-key (kbd "C-c g l") 'magit-log)
