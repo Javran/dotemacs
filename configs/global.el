@@ -30,3 +30,6 @@
 
 ;; ag the silver searcher
 (global-set-key (kbd "C-x C-g") 'ag)
+
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
