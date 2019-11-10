@@ -16,6 +16,14 @@
 ;; https://github.com/senny/cabbage/issues/175
 (global-auto-revert-mode 1)
 
-;; global key bindings
+;;; global key bindings
+
+;; magit
 (global-set-key (kbd "C-c g s") 'magit-status)
 (global-set-key (kbd "C-c g l") 'magit-log)
+
+;; smex
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; This is your old M-x.
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)

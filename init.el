@@ -31,13 +31,17 @@
 ;; make the modeline high contrast
 (setq solarized-high-contrast-mode-line t)
 
+;; https://github.com/nonsequitur/smex
+(require 'smex)
+(smex-initialize)
+
 ;;; Following parts are reserved for emacs to update its own configs.
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (magit solarized-theme))))
+ '(package-selected-packages (quote (smex magit solarized-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
