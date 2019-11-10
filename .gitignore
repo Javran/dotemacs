@@ -4,3 +4,5 @@
 /extensions/*
 /elpa
 /auto-save-list
+/smex-items
+/transient/
