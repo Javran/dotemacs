@@ -37,3 +37,10 @@
 ;; move to next/prev buffer
 (global-set-key (kbd "C-`") 'next-buffer)
 (global-set-key (kbd "<C-tab>") 'previous-buffer)
+
+;; enable ido-mode
+(ido-mode 1)
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+;; http://stackoverflow.com/questions/7479565/emacs-ido-mode-and-creating-new-files-in-directories-it-keeps-changing-the-dire
+(setq ido-auto-merge-work-directories-length -1)
