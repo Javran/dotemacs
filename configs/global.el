@@ -34,9 +34,7 @@
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
-;; move to next/prev buffer
-(global-set-key (kbd "C-`") 'next-buffer)
-(global-set-key (kbd "<C-tab>") 'previous-buffer)
+;; move to prev/next buffer: C-x <left> / C-x <right>
 
 ;; enable ido-mode
 (ido-mode 1)
