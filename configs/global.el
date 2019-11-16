@@ -43,5 +43,8 @@
 ;; http://stackoverflow.com/questions/7479565/emacs-ido-mode-and-creating-new-files-in-directories-it-keeps-changing-the-dire
 (setq ido-auto-merge-work-directories-length -1)
 
+(setq split-width-threshold 0)
+(setq split-height-threshold 9999)
+
 (require 'lsp-ui)
 (add-hook 'lsp-mode-hook 'lsp-ui-mode)
