@@ -10,6 +10,19 @@
  browse-url-browser-function 'browse-url-generic
  browse-url-generic-program "/usr/bin/xdg-open")
 
+(dolist (maj-mod-hook
+         '(haskell-cabal-mode-hook
+           emacs-lisp-mode-hook
+           markdown-mode-hook
+           haskell-mode-hook
+           scheme-mode-hook
+           makefile-mode-hook
+           c-mode-hook
+           c++-mode-hook
+           ))
+  (add-hook maj-mod-hook
+            (lambda ()
+              (setq show-trailing-whitespace t))))
 ;; Some piece of junk that should be nuked from the universe.
 ;; https://www.reddit.com/r/emacs/comments/2mu7yi/disable_electric_indent_mode/cm7nhdt/
 (electric-indent-mode -1)
