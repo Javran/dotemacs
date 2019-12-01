@@ -5,6 +5,11 @@
 (setq-default indent-tabs-mode nil)
 (setq make-backup-files nil)
 
+;; external browser
+(setq
+ browse-url-browser-function 'browse-url-generic
+ browse-url-generic-program "/usr/bin/xdg-open")
+
 ;; Some piece of junk that should be nuked from the universe.
 ;; https://www.reddit.com/r/emacs/comments/2mu7yi/disable_electric_indent_mode/cm7nhdt/
 (electric-indent-mode -1)
