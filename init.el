@@ -53,7 +53,7 @@
  '(lsp-enable-snippet nil)
  '(package-selected-packages
    (quote
-    (lsp-haskell lsp-mode flycheck lsp-ui company-lsp keyfreq expand-region hlinum ag smex magit solarized-theme))))
+    (crux lsp-haskell lsp-mode flycheck lsp-ui company-lsp keyfreq expand-region hlinum ag smex magit solarized-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
