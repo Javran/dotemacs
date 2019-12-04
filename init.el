@@ -9,6 +9,12 @@
 
 (package-initialize)
 
+;; dropping the default "-l" before initialization.
+;; https://github.com/purcell/exec-path-from-shell/issues/40
+;; or alternatively let .zprofile source from .profile: https://superuser.com/a/187673/459888
+(setq exec-path-from-shell-arguments (quote ("-i")))
+(exec-path-from-shell-initialize)
+
 (dolist
     (lpath
      (list
@@ -56,7 +62,7 @@
  '(lsp-enable-snippet nil)
  '(package-selected-packages
    (quote
-    (add-node-modules-path flycheck-color-mode-line js2-mode web-mode crux lsp-haskell lsp-mode flycheck lsp-ui company-lsp keyfreq expand-region hlinum ag smex magit solarized-theme))))
+    (exec-path-from-shell add-node-modules-path flycheck-color-mode-line js2-mode web-mode crux lsp-haskell lsp-mode flycheck lsp-ui company-lsp keyfreq expand-region hlinum ag smex magit solarized-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
