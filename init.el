@@ -25,6 +25,7 @@
 (load-file "~/.emacs.d/configs/global.el")
 (load-file "~/.emacs.d/configs/haskell.el")
 (load-file "~/.emacs.d/configs/webdev.el")
+(load-file "~/.emacs.d/configs/typescript.el")
 
 ;;; Look-and-feel related stuff are organized here because it is easier to simply eval-buffer and try it out.
 (menu-bar-mode -1)
@@ -62,7 +63,7 @@
  '(lsp-enable-snippet nil)
  '(package-selected-packages
    (quote
-    (exec-path-from-shell add-node-modules-path flycheck-color-mode-line js2-mode web-mode crux lsp-haskell lsp-mode flycheck lsp-ui company-lsp keyfreq expand-region hlinum ag smex magit solarized-theme))))
+    (tide exec-path-from-shell add-node-modules-path flycheck-color-mode-line js2-mode web-mode crux lsp-haskell lsp-mode flycheck lsp-ui company-lsp keyfreq expand-region hlinum ag smex magit solarized-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
