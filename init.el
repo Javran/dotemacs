@@ -59,11 +59,21 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ ;; Dhall auto-formating must be disabled otherwise it destorys some comments.
+ '(dhall-format-at-save nil)
  '(ido-default-file-method (quote selected-window))
  '(lsp-enable-snippet nil)
  '(package-selected-packages
    (quote
-    (tide exec-path-from-shell add-node-modules-path flycheck-color-mode-line js2-mode web-mode crux lsp-haskell lsp-mode flycheck lsp-ui company-lsp keyfreq expand-region hlinum ag smex magit solarized-theme))))
+    (yaml-mode dhall-mode tide exec-path-from-shell add-node-modules-path flycheck-color-mode-line js2-mode web-mode crux lsp-haskell lsp-mode flycheck lsp-ui company-lsp keyfreq expand-region hlinum ag smex magit solarized-theme)))
+ '(typescript-indent-level 2)
+ ;; those auto-things are absolutely stupid and I want none of them.
+ '(web-mode-enable-auto-closing nil)
+ '(web-mode-enable-auto-expanding nil)
+ '(web-mode-enable-auto-indentation nil)
+ '(web-mode-enable-auto-opening nil)
+ '(web-mode-enable-auto-pairing nil)
+ '(web-mode-enable-auto-quoting nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
